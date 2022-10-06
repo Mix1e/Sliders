@@ -6,10 +6,12 @@ export const MAX_BORDER_VALUE = 100;
 export class Sliders {
 
   nums: number[];
+  probability: number;
 
   constructor(length: number) {
     this.nums = new Array(length);
     this.nums.fill(0);
+    this.probability = 1/(length-1);
   }
 
   resetNums(): void {
@@ -22,14 +24,20 @@ export class Sliders {
   }
 
   private static isAllAbleToPay(price: number, elem: number, nums: number[], rise: boolean): boolean {
-    return !nums.every((num, index) => {
-      return elem != index && Math.abs(num + this.getPay(rise, price)) > MAX_BORDER_VALUE
+    for (let i = 0; i < nums.length; i++) {
+      if(elem != i && Math.abs(nums[i] + this.getPay(rise, price)) > MAX_BORDER_VALUE) {
+        return false;
       }
-    )
+    }
+    return true;
   }
 
   private static getPay(rise: boolean, price: number): number {
     return rise ? -price : price;
+  }
+
+  private static countProbability(probability:number) {
+    return Math.random() >= probability;
   }
 
 
@@ -37,9 +45,11 @@ export class Sliders {
     let bank = Sliders.getBank(prev.nums[changedElem], cur.nums[changedElem]);
     let isBigger = cur.nums[changedElem]>prev.nums[changedElem];
 
-    let price = Math.round(bank / (cur.nums.length - 1));
+    let flag = Sliders.countProbability(cur.probability);
+    let price = bank / (cur.nums.length - 1);
+    price = flag ? Math.ceil(price) : Math.floor(price);
 
-    if (!Sliders.isAllAbleToPay(price, changedElem, cur.nums, isBigger))
+    if (!Sliders.isAllAbleToPay(flag? price : price+1, changedElem, cur.nums, isBigger))
       price = bank;
 
     for (let i = 0; i < cur.nums.length; i++) {

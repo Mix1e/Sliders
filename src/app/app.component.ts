@@ -14,7 +14,6 @@ export class AppComponent implements OnInit{
   readonly right = RIGHT_BORDER;
   sliders = new Sliders(slidersCount);
   prev = new Sliders(slidersCount);
-  sum = Sliders.getSum(this.sliders);
 
   constructor() {
   }
@@ -30,4 +29,7 @@ export class AppComponent implements OnInit{
     Sliders.balanceNums(num, this.prev, this.sliders);
   }
 
+  getSum(): number {
+    return Sliders.getSum(this.sliders);
+  }
 }
