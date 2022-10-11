@@ -1,6 +1,6 @@
-export const RIGHT_BORDER = 100;
-export const LEFT_BORDER = -100;
-export const MAX_BORDER_VALUE = 100;
+export const RIGHT_BORDER:number = 100;
+export const LEFT_BORDER:number = -100;
+export const MAX_BORDER_VALUE:number = 100;
 
 
 export class Sliders {
@@ -36,7 +36,7 @@ export class Sliders {
     return rise ? -price : price;
   }
 
-  private static countProbability(probability:number) {
+  private static countProbability(probability:number): boolean {
     return Math.random() >= probability;
   }
 
