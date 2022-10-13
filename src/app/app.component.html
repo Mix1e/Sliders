@@ -4,16 +4,16 @@
   </div>
 
   <div>
-    <input class="slider" type="range" min="{{left}}" max="{{right}}" step="1" value="0" [(ngModel)] = "sliders.nums[0]" (input)="doBalance(0)">
-    <input class="slider" type="range" min="{{left}}" max="{{right}}" step="1" value="0" [(ngModel)] = "sliders.nums[1]" (input)="doBalance(1)">
-    <input class="slider" type="range" min="{{left}}" max="{{right}}" step="1" value="0" [(ngModel)] = "sliders.nums[2]" (input)="doBalance(2)">
+    <input class="slider" type="range" min="{{leftBorder}}" max="{{rightBorder}}" step="1" value="0" [(ngModel)] = "sliders.nums[0]" (input)="doBalance(0)">
+    <input class="slider" type="range" min="{{leftBorder}}" max="{{rightBorder}}" step="1" value="0" [(ngModel)] = "sliders.nums[1]" (input)="doBalance(1)">
+    <input class="slider" type="range" min="{{leftBorder}}" max="{{rightBorder}}" step="1" value="0" [(ngModel)] = "sliders.nums[2]" (input)="doBalance(2)">
   </div>
 
   <div>
     <p style="font-size: 20px">Log:</p>
-    <p style="font-size: 15px">slider1: {{sliders.nums[0]}}</p>
-    <p style="font-size: 15px">slider2: {{sliders.nums[1]}}</p>
-    <p style="font-size: 15px">slider3: {{sliders.nums[2]}}</p>
-    <p style="font-size: 15px">sum: {{getSum()}}</p>
+    <p style="font-size: 15px">slider1: {{firstSliderValue}}</p>
+    <p style="font-size: 15px">slider2: {{secondSliderValue}}</p>
+    <p style="font-size: 15px">slider3: {{thirdSliderValue}}</p>
+    <p style="font-size: 15px">sum: {{sum}}</p>
   </div>
 </div>

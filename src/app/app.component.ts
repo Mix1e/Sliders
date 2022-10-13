@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {LEFT_BORDER, RIGHT_BORDER, Sliders} from "./models/Sliders";
 
 const slidersCount:number = 3;
@@ -9,16 +9,34 @@ const slidersCount:number = 3;
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit{
-  title:string = 'Sliders';
-  readonly left:number = LEFT_BORDER;
-  readonly right:number = RIGHT_BORDER;
-  sliders:Sliders = new Sliders(slidersCount);
-  prev:Sliders = new Sliders(slidersCount);
+export class AppComponent {
+  title: string = 'Sliders';
+  sliders: Sliders = new Sliders(slidersCount);
+  prev: Sliders = new Sliders(slidersCount);
 
   constructor() {
   }
-  ngOnInit(): void {
+
+  get leftBorder():number {
+    return LEFT_BORDER;
+  }
+
+  get rightBorder():number {
+    return RIGHT_BORDER;
+  }
+
+  get firstSliderValue(): number {
+    return this.sliders.nums[0];
+  }
+  get secondSliderValue(): number {
+    return this.sliders.nums[1];
+  }
+  get thirdSliderValue(): number {
+    return this.sliders.nums[2];
+  }
+
+  get sum(): number {
+    return Sliders.getSum(this.sliders);
   }
 
   resetBars(): void {
@@ -28,9 +46,5 @@ export class AppComponent implements OnInit{
 
   doBalance(num:number): void {
     Sliders.balanceNums(num, this.prev, this.sliders);
-  }
-
-  getSum(): number {
-    return Sliders.getSum(this.sliders);
   }
 }

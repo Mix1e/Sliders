@@ -2,7 +2,6 @@ export const RIGHT_BORDER:number = 100;
 export const LEFT_BORDER:number = -100;
 export const MAX_BORDER_VALUE:number = 100;
 
-
 export class Sliders {
 
   nums: number[];
